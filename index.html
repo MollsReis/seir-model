@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SEIR Model</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>SEIR Model</h1>
+  <div id="variables" class="row">
+    <div class="three columns">
+      <label for="r0">R0</label>
+      <input id="r0" type="number" value="2.28" min="0" step="0.01" />
+    </div>
+
+    <div class="three columns">
+      <label for="infection">Infection rate</label>
+      <input id="infection" type="number" value="0.325" readonly />
+    </div>
+
+    <div class="three columns">
+      <label for="incubation">Incubation time (days)</label>
+      <input id="incubation" type="number" value="7" min="0" />
+    </div>
+
+    <div class="three columns">
+      <label for="recovery">Recovery time (days)</label>
+      <input id="recovery" type="number" value="7" min="0" />
+    </div>
+  </div>
+
+  <canvas id="lineChart" width="400" height="200"></canvas>
+</div>
+<script type="application/javascript" src="/index.js"></script>
+</body>
+</html>
