@@ -7,6 +7,10 @@
   <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
   <style>
+    span.s { color: rgb(75, 192, 192); }
+    span.e { color: rgb(255, 205, 86); }
+    span.i { color: rgb(255, 99, 132); }
+    span.r { color: rgb(54, 162, 235); }
     #startDate {
       height: 38px;
       padding: 6px 10px;
@@ -27,8 +31,10 @@
 </head>
 <body>
 <div class="container">
-  <h1>SEIR Model</h1>
-  <canvas id="lineChart" width="400" height="200"></canvas>
+  <h1>
+    <span class="s">S</span><span class="e">E</span><span class="i">I</span><span class="r">R</span> Model
+  </h1>
+  <canvas id="lineChart" width="400" height="225"></canvas>
   <div id="variables" class="row">
     <div class="three columns">
       <label for="startDate">Start date</label>

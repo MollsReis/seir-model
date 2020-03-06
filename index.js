@@ -6,7 +6,7 @@
           i = [{ x: 0, y: 1 }],
           r = [{ x: 0, y: 0 }];
 
-    for (let x = 1; x < 200; x++) { // TODO run until i = 0
+    for (let x = 1; x < 365; x++) {
       const sC = _.last(s).y,
         eC = _.last(e).y,
         iC = _.last(i).y,
@@ -14,10 +14,12 @@
         s2e = sC * iC * inf / n,
         e2i = eC / inc,
         i2r = iC / rec;
-      s.push({ x, y: sC - s2e });
-      e.push({ x, y: eC + s2e - e2i });
-      i.push({ x, y: iC + e2i - i2r });
-      r.push({ x, y: rC + i2r });
+      s.push({ x, y: _.round(sC - s2e, 2) });
+      e.push({ x, y: _.round(eC + s2e - e2i, 2) });
+      i.push({ x, y: _.round(iC + e2i - i2r, 2) });
+      r.push({ x, y: _.round(rC + i2r, 2) });
+
+      if (_.last(i).y < 0.1) break;
     }
 
     return [ s, e, i, r ];
@@ -55,7 +57,10 @@
       }],
     },
     options: {
-      legend: { position: 'bottom' },
+      legend: {
+        position: 'bottom',
+        labels: { padding: 20 },
+      },
       scales: {
         xAxes: [{
           type: 'time',
@@ -63,6 +68,12 @@
           time: {
             parser: x => moment(document.getElementById('startDate').value).add(x, 'days'),
             unit: 'day',
+          },
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: '% of population',
           },
         }],
       },
