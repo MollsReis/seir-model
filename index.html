@@ -6,33 +6,50 @@
   <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
   <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <style>
+    #startDate {
+      height: 38px;
+      padding: 6px 10px;
+      background-color: #fff;
+      border: 1px solid #D1D1D1;
+      border-radius: 4px;
+      box-shadow: none;
+      box-sizing: border-box;
+      font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    #variables {
+      margin-top: 20px;
+    }
+    #variables input {
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
   <h1>SEIR Model</h1>
+  <canvas id="lineChart" width="400" height="200"></canvas>
   <div id="variables" class="row">
     <div class="three columns">
+      <label for="startDate">Start date</label>
+      <input id="startDate" class="u-full-width" type="date" value="2020-02-20" />
+    </div>
+
+    <div class="three columns">
       <label for="r0">R0</label>
-      <input id="r0" type="number" value="2.28" min="0" step="0.01" />
+      <input id="r0" class="u-full-width" type="number" value="2.28" min="0" step="0.01" />
     </div>
 
     <div class="three columns">
-      <label for="infection">Infection rate</label>
-      <input id="infection" type="number" value="0.325" readonly />
+      <label for="inc">Incubation time (days)</label>
+      <input id="inc" class="u-full-width" type="number" value="7" min="0" />
     </div>
 
     <div class="three columns">
-      <label for="incubation">Incubation time (days)</label>
-      <input id="incubation" type="number" value="7" min="0" />
-    </div>
-
-    <div class="three columns">
-      <label for="recovery">Recovery time (days)</label>
-      <input id="recovery" type="number" value="7" min="0" />
+      <label for="rec">Recovery time (days)</label>
+      <input id="rec" class="u-full-width" type="number" value="7" min="0" />
     </div>
   </div>
-
-  <canvas id="lineChart" width="400" height="200"></canvas>
 </div>
 <script type="application/javascript" src="/index.js"></script>
 </body>

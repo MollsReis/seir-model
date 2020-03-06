@@ -55,12 +55,13 @@
       }],
     },
     options: {
+      legend: { position: 'bottom' },
       scales: {
         xAxes: [{
           type: 'time',
           distribution: 'series',
           time: {
-            parser: x => moment().subtract(2, 'weeks').add(x, 'days'),
+            parser: x => moment(document.getElementById('startDate').value).add(x, 'days'),
             unit: 'day',
           },
         }],
@@ -70,10 +71,22 @@
 
   const lineChart = new Chart(ctx, chartConfig);
 
-  const [ s, e, i, r ] = generateModel(0.325, 7, 7);
-  lineChart.data.datasets[0].data = s;
-  lineChart.data.datasets[1].data = e;
-  lineChart.data.datasets[2].data = i;
-  lineChart.data.datasets[3].data = r;
-  lineChart.update();
+  const updateChart = () => {
+    const inf = document.getElementById('r0').valueAsNumber / document.getElementById('rec').valueAsNumber,
+          inc = document.getElementById('inc').valueAsNumber,
+          rec = document.getElementById('rec').valueAsNumber,
+          [ s, e, i, r ] = generateModel(inf, inc, rec);
+    lineChart.data.datasets[0].data = s;
+    lineChart.data.datasets[1].data = e;
+    lineChart.data.datasets[2].data = i;
+    lineChart.data.datasets[3].data = r;
+    lineChart.update();
+  };
+
+  document.getElementById('startDate').onchange = updateChart;
+  document.getElementById('r0').onchange = updateChart;
+  document.getElementById('inc').onchange = updateChart;
+  document.getElementById('rec').onchange = updateChart;
+  updateChart();
+
 })(_, Chart, moment);
